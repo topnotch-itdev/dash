@@ -1,0 +1,106 @@
+<div class="w-full max-w-8xl">
+    <div class="sm:col-span-2">
+        <div class="product-items bg-card p-4">
+            <h2 class="font-bold font-large mb-2">#NowPlaying Tweets</h2>
+            <p class="font-medium playing-social">Get social and interact with your listeners!</p>
+            <p class="font-service pt-1">
+                #NowPlaying is a free service that automatically posts your now playing information to Twitter. It allows your listeners to know what you're currently playing and artists to interact with you, directly on Twitter.
+            </p>
+            <p class="font-service pt-1">
+                Be careful not to use this service to tweet too often - otherwise you may violate Twitter's terms of service.
+            </p>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="configure-items bg-card p-4" *ngIf="alertStatus.warning">
+            <mat-icon class="warning-icon">warning</mat-icon>
+            <h5 class="font-bold mb-0" *ngIf="!warningMsg">You need to configure #NowPlaying before it can be enabled.</h5>
+            <h5 class="font-bold mb-0" *ngIf="warningMsg"> {{warningMsg}}</h5>
+        </div>
+        <div class="alert-show bg-card p-4" *ngIf="alertStatus.alert">
+            <mat-icon class="warning-icon">notification_important</mat-icon>
+            <h5 class="font-bold mb-0">{{ notifyMsg }}</h5>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="product-items bg-card p-4 setting-column">
+            <form [formGroup]="playingDataForm">
+                <div class="grid sm:grid-cols-2 gap-6 w-full">
+                    <div>
+                        <h5 class="font-bold font-large mb-2">Settings</h5>
+                    </div>
+                    <div class="switch-success text-right">
+                        <mat-slide-toggle color="primary" formControlName="isEnabled"></mat-slide-toggle>
+                    </div>
+                </div>
+
+                <div class="well-items bg-card mt-4">
+                    <p class="font-service pt-1 mb-4">Here's what a #NowPlaying Tweet currently looks like:</p>
+                    <blockquote class="no-margin-bottom blockquote-des">
+                        <p class="always-wrap">#NowPlaying This is a Song Name - Artist Name</p>
+                        <small>@yourtwitterhandle (preview) <span class="pull-right">45/140</span></small>
+                    </blockquote>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6 w-full mt-8">
+                    <div class="form-group">
+                        <div class="textarea-data">
+                            <label for="tweet" class="col-sm-2 control-label">Tweet</label>
+                            <textarea rows="5" cols="12" id="tweet" class="form-control textarea-form ml-3" formControlName="tweet"></textarea>
+                        </div>
+                        <div class="textarea-footer mt-2">
+                            <p>Your Tweet content. Use
+                                <code>%title</code> and <code>%artist</code> for the song title and the artist name.
+                            </p>
+                        </div>
+                        <div class="textarea-data mt-3">
+                            <label for="every" class="col-sm-2 control-label">Every</label>
+                            <div class="flex flex-wrap">
+                                <input type="number" id="interval" step="1" min="1" placeholder="Interval" class="form-control text-center every-text ml-3 mt-1 sm:w-full md:w-2/5" formControlName="interval">
+                                <div class="switch-success ml-3 mt-1">
+                                    <mat-radio-group aria-label="Select an option" class="sm:w-full" formControlName="options">
+                                        <mat-radio-button value="interval" class="mat-radio-songs" [checked]="true">songs</mat-radio-button>
+                                        <mat-radio-button value="time" class="mat-radio-minutes">minutes</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button type="button" class="btn-setting" (click)="savePlayingData()">
+                                <i class="material-icons save-icon custom-mat-icon">save</i>Save Settings
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="remove-setting-form">
+                            <label for="api-key" class="control-label mr-3">API Key</label>
+                            <input type="text" formControlName="apiKey" placeholder="API Key" class="form-control text-left text-data ml-4" [ngClass]="{ 'is-invalid': submitted && f.apiKey.errors }">
+                        </div>
+                        <div class="remove-setting-form mt-4">
+                            <label for="api-secret" class="control-label mr-3">API Secret</label>
+                            <input type="text" formControlName="apiSecret" placeholder="API Secret" class="form-control text-left text-data ml-4" [ngClass]="{ 'is-invalid': submitted && f.apiSecret.errors }">
+                        </div>
+                        <div class="remove-setting-form mt-4">
+                            <label for="access-token" class="control-label mr-3">Access Token</label>
+                            <input type="text" formControlName="accessToken" placeholder="Access Token" class="form-control text-left text-data ml-4" [ngClass]="{ 'is-invalid': submitted && f.accessToken.errors }">
+                        </div>
+                        <div class="remove-setting-form mt-4">
+                            <label for="access-token-secret" class="control-label mr-3">Access Token Secret</label>
+                            <input type="text" formControlName="accessTokenSecret" placeholder="Access Token Secret" class="form-control text-left text-data ml-4" [ngClass]="{ 'is-invalid': submitted && f.accessTokenSecret.errors }">
+                        </div>
+                        <p class="help-block">Need help on setting this up?
+                            <a href="https://help.streamerr.co/article/how-do-i-enabled-nowplaying-tweets/" class="article-guide">Check
+                                out our help guide</a> for more information.
+                        </p>
+                        <button type="button" class="btn-remove-setting" (click)="removePlayingData()" [disabled]="playingDataForm.invalid">
+                            Remove Settings
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

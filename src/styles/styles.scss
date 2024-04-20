@@ -1,0 +1,417 @@
+    /* ----------------------------------------------------------------------------------------------------- */
+    /*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+    
+    .decoration {
+        text-decoration: none;
+        box-shadow: none;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    .decoration:hover,
+    .decoration:focus {
+        text-decoration: none;
+        box-shadow: none;
+        outline: none;
+    }
+    
+    .mat-grid-tile-content {
+        align-items: unset !important;
+        justify-content: center !important;
+    }
+    
+    .mat-card.invoice-card {
+        width: 600px !important;
+        border-top: 3px solid #ff0173 !important;
+        box-shadow: none !important;
+        border: 1px solid #dfe6ec;
+        height: fit-content !important;
+    }
+    
+    .mat-card.support-ticket-card {
+        width: 600px !important;
+        border-top: 3px solid #00c6ff !important;
+        box-shadow: none !important;
+        border: 1px solid #dfe6ec;
+        height: fit-content !important;
+    }
+    
+    .mat-card.recent-ticket-card {
+        width: 600px !important;
+        border-top: 3px solid #8d9cab !important;
+        box-shadow: none !important;
+        border: 1px solid #dfe6ec;
+        height: fit-content !important;
+    }
+    
+    .mat-card.product-card {
+        width: 600px !important;
+        border-top: 3px solid #ffd200 !important;
+        box-shadow: none !important;
+        border: 1px solid #dfe6ec;
+        height: fit-content !important;
+    }
+    
+    button.mat-accent {
+        float: right !important;
+        background-color: #ff0173;
+        border-radius: 5px !important;
+        padding: 3px 15px !important;
+        margin-left: 20px;
+    }
+    
+    .custom-grid-card {
+        padding: 0 55px !important;
+    }
+    
+    button.mat-skyblue {
+        background-color: #00c6ff !important;
+        border-radius: 5px !important;
+        padding: 3px 15px !important;
+        margin-left: 20px;
+    }
+    
+    button.mat-view {
+        background-color: #8d9cab;
+        border-radius: 5px !important;
+        padding: 3px 15px !important;
+        margin-left: 20px;
+    }
+    
+    button.mat-product {
+        background-color: #ffd200 !important;
+        border-radius: 5px !important;
+        padding: 3px 15px !important;
+        margin-left: 20px;
+    }
+    
+    button.mat-view:hover,
+    button.mat-skyblue:hover,
+    button.mat-accent:hover {
+        color: #111111 !important;
+    }
+    
+    .mat-card-content {
+        padding: 25px 15px !important;
+    }
+    
+    a.open-ticket-link {
+        color: #ff0173 !important;
+        text-decoration: none !important;
+        cursor: pointer;
+    }
+    
+    .mat-active-service {
+        cursor: pointer;
+    }
+    
+    .mat-active-service:hover {
+        background-color: #dfe6ec;
+        color: #ff0173;
+        width: 100%;
+    }
+    
+    .mat-border-bottom {
+        border-bottom: 3px solid #dfe6ec;
+    }
+    
+    .mat-chip-suspended {
+        background-color: #f0ad4e;
+    }
+    
+    .mat-card-title-group {
+        justify-content: left !important;
+    }
+    
+    .custom-width {
+        max-width: 368px;
+    }
+    
+    .custom-mat-group {
+        display: block !important;
+    }
+    
+    .mat-search-icon {
+        align-self: center;
+        padding: 22px
+    }
+    
+    .search-control {
+        background: #ebf2f8;
+    }
+    
+    .vat-font {
+        font-size: medium;
+    }
+    
+    .mail-list {
+        font-size: 15px;
+    }
+    
+    .complete-solution:hover {
+        color: #ff0173;
+    }
+    
+    .mat-tab-header {
+        display: none !important;
+    }
+    
+    .iphone-app-main,
+    .android-app-main {
+        background-color: #FFFFFF;
+        padding: 20px;
+    }
+    
+    .handy-extras-main .iphone-app-title {
+        padding: 10px;
+        font-weight: bolder;
+        font-size: 20px;
+        border-top: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        margin: 10px 0;
+    }
+    
+    .handy-extras-main .mat-card.iphone-app-card,
+    .handy-extras-main .mat-card.android-app-card {
+        width: 100% !important;
+        box-shadow: none !important;
+        border: 1px solid lightgrey;
+        height: fit-content !important;
+        max-width: 925px;
+    }
+    
+    .handy-extras-main .mat-card-actions {
+        margin-bottom: 0px !important;
+        margin-right: 0px !important;
+        padding: 10px 0 !important;
+        margin-left: 0px !important;
+        text-align: end;
+    }
+    
+    .handy-extras-main .mat-card-actions button {
+        border: 1px solid lightgrey;
+        border-radius: 20px;
+    }
+    
+    .font-weight-bold {
+        font-weight: bold;
+    }
+    
+    .font-weight-500 {
+        font-weight: 500;
+    }
+    
+    .handy-extras-main .mat-card-content {
+        border-top: 1px solid lightgrey;
+    }
+    
+    .handy-extras-main .mat-card-title-group.custom-title-group {
+        justify-content: space-between !important;
+        margin: 10px 0;
+    }
+    
+    .handy-extras-main .mat-card-title-group.custom-title-group div {
+        align-self: center !important;
+        margin: 0 auto;
+    }
+    
+    .handy-extras-main .iphone-app-card .mat-card-content h5 {
+        text-align: center;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+    
+    .handy-extras-main .iphone-app-card .mat-card-content p {
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        margin: 20px 0;
+    }
+    
+    .handy-extras-main .android-app-card .mat-card-content h5 {
+        text-align: left;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .handy-extras-main .android-app-card .mat-card-content p {
+        text-align: left;
+        font-weight: 500;
+        font-size: 14px;
+        margin: 20px 0;
+    }
+    
+    .handy-extras-main .build-customize-box {
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .handy-extras-main .build-customize-box mat-icon {
+        color: black;
+        font-size: 42px;
+        margin: 30px 0;
+    }
+    
+    .text-red {
+        color: #FF0000;
+    }
+    
+    .mat-form-field-wrapper {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    
+    // input[type="file"] {
+    //     display: none;
+    // }
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 20px;
+        cursor: pointer;
+        max-width: 300px;
+        border-radius: 20px !important;
+    }
+    
+    .custom-mat-icon {
+        vertical-align: bottom;
+    }
+    
+    .align-self-center {
+        align-self: center;
+    }
+    
+    .custom-label {
+        align-self: center !important;
+    }
+    
+    .custom-mat-input {
+        border: 1px solid lightgray !important;
+        padding: 20px !important;
+        border-radius: 20px !important;
+    }
+    
+    .mat-form-field-underline {
+        display: none !important;
+    }
+    
+    .fileupload-main {
+        display: -webkit-inline-box;
+    }
+    
+    .custom-margin {
+        margin: 30px 0;
+    }
+    
+    .avatar-img {
+        max-width: 58px;
+        border-radius: 13px;
+        margin-right: 20px;
+    }
+    
+    .avatar1-img {
+        max-width: 58px;
+        border-radius: 13px;
+        margin: 0 auto;
+    }
+    
+    .mat-form-field-wrapper .mat-form-field-flex {
+        border-radius: 52px !important;
+        width: 300px !important;
+    }
+    
+    .warningBox {
+        background-color: #FFFACD;
+        color: #987654;
+        padding: 1px 20px;
+        font-weight: 500;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-wrapper::before {
+        content: '';
+        width: 1px;
+        height: 44px;
+        background-color: currentColor;
+        position: absolute;
+        border-radius: 2px;
+        left: 42px;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: currentColor;
+        position: absolute;
+        left: 25px;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-active::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(var(--fuse-primary-rgb), var(--tw-text-opacity)) !important;
+        position: absolute;
+        left: 25px;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item {
+        padding: 10px 43px !important;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper {
+        margin-left: 20px;
+    }
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item .fuse-vertical-navigation-item-title-wrapper .fuse-vertical-navigation-item-title {
+        min-width: 160px;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item-active {
+        background-color: transparent !important;
+    }
+    
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item:active,
+    .fuse-vertical-navigation-item-children .fuse-vertical-navigation-item:hover {
+        background-color: transparent !important;
+    }
+    
+    .custom-size-iosImg {
+        max-height: 600px;
+        max-width: 310px;
+    }
+    
+    .custom-size-androidImg {
+        max-height: 580px;
+        max-width: 310px;
+    }
+    
+    @media only screen and (max-width: 599px) and (min-width: 300px) {
+        .responsive-image {
+            display: none !important;
+        }
+        .handy-extras-main .mat-grid-tile {
+            overflow: visible !important;
+        }
+    }
+    
+.ngx-mat-color-palette .ngx-mat-color-canvas .zone-canvas {
+    display: flex;
+}
+.ngx-mat-color-palette .ngx-mat-color-canvas .mat-form-field.mat-form-field-appearance-fill .mat-form-field-wrapper .mat-form-field-flex {
+    width: 150px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+}
+.ngx-mat-color-palette .ngx-mat-color-collection .btn-color {
+    margin-top: 10px !important;
+}
+
+.backgroundPicker 
+.mat-form-field.mat-form-field-appearance-fill 
+.mat-form-field-wrapper .mat-form-field-flex {
+    width: 200px !important;
+}

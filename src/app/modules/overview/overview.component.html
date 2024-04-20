@@ -1,0 +1,119 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div class="bg-card">
+        <div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-8 sm:my-12">
+                <!-- Avatar and name -->
+                <div class="flex flex-auto items-center min-w-0">
+                    <span class="relative">
+                        <img class="w-full h-full object-cover" *ngIf="userData.avatar" [src]="userData.avatar">
+                        <img class="w-full h-full object-cover" ngxGravatar *ngIf="!userData.avatar"
+                            [md5Hash]="userData.email | md5" />
+                    </span>
+                    <div class="flex flex-col min-w-0 ml-4">
+                        <ng-container *transloco="let t">
+                            <div
+                                class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">
+                                {{t('welcome-back')}}, {{ userData.firstName }}!</div>
+                        </ng-container>
+                        <div class="flex items-center">
+                            <!-- <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:bell'"></mat-icon> -->
+                            <div class="ml-1.5 leading-6 text-secondary">
+                                Our innovative, stylish & modern control panel to access the handy extras associated
+                                with your services. We will be adding more exciting features to Dash very soon!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Actions
+                <div class="flex items-center mt-6 sm:mt-0 sm:ml-2 space-x-3">
+                    <button class="fuse-mat-button-rounded bg-accent-700" mat-flat-button [color]="'accent'">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                        <span class="ml-2">Messages</span>
+                    </button>
+                    <button class="fuse-mat-button-rounded" mat-flat-button [color]="'primary'">
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:cog'"></mat-icon>
+                        <span class="ml-2">Settings</span>
+                    </button>
+                </div> -->
+            </div>
+            <!-- Overview selector -->
+            <div class="flex items-center">
+                <div (click)="typeOverview('radio')" class="relative flex self-start pt-2 pb-1 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0" [ngClass]="overviewType==='radio'?'bg-default':''">
+                    <div class="flex items-center">
+                        <div class="overflow-hidden">
+                            <div class="font-medium leading-6 truncate">Radio Streaming</div>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="typeOverview('website')" *ngIf="onepageEnabled" class="relative flex self-start pt-2 pb-1 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0" [ngClass]="overviewType==='website'?'bg-default':''">
+                    <div class="flex items-center">
+                        <div class="overflow-hidden">
+                            <div class="font-medium leading-6 truncate">Website CMS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto border-t -mt-px pt-4 pb-4 sm:pt-6">
+        <div class="w-full max-w-screen-xl mx-auto">
+            <div *ngIf="overviewType==='radio'" class="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0 custom-grid-card">
+                <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                    *ngFor="let data of productData">
+                    <div class="flex items-start justify-between">
+                        <div class="text-lg font-medium tracking-tight leading-6 truncate">{{ data.username }}
+                        </div>
+                        <div class="ml-2 -mt-2 -mr-3">
+                            <button mat-icon-button [matMenuTriggerFor]="summaryMenu">
+                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'">
+                                </mat-icon>
+                            </button>
+                            <mat-menu #summaryMenu="matMenu">
+                                <button mat-menu-item (click)="viewMoreData(data.id)">More info...</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="items-center mt-2 text-center">
+                        <p class="text-6xl sm:text-6xl font-bold tracking-tight leading-none text-blue-500 mb-2">
+                            #{{ data.id }}
+                        </p>
+                        <p class="text-2xl sm:text-2xl font-medium tracking-tight leading-none">
+                            {{ data.server }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="overviewType==='website' && onepageEnabled" class="grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0 custom-grid-card">
+                <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                    *ngFor="let data of onepageData">
+                    <div class="flex items-start justify-between">
+                        <div class="text-lg font-medium tracking-tight leading-6 truncate">{{ data.username }}
+                        </div>
+                        <div class="ml-2 -mt-2 -mr-3">
+                            <button mat-icon-button [matMenuTriggerFor]="summaryMenu">
+                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:dots-vertical'">
+                                </mat-icon>
+                            </button>
+                            <mat-menu #summaryMenu="matMenu">
+                                <button mat-menu-item (click)="viewMoreData(data.id)">More info...</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="items-center mt-2 text-center">
+                        <p class="text-6xl sm:text-6xl font-bold tracking-tight leading-none text-blue-500 mb-2">
+                            #{{ data.id }}
+                        </p>
+                        <p class="text-2xl sm:text-2xl font-medium tracking-tight leading-none">
+                            {{ data.server }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

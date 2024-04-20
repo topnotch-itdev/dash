@@ -1,0 +1,53 @@
+<div class="w-full max-w-8xl handy-extras-main android-app-main">
+    <div class="iphone-app-title">
+        Android App Development
+    </div>
+    <mat-grid-list [cols]="isMobile ? 3 : 6" rowHeight="800px">
+        <mat-grid-tile [colspan]="4" class="custom-grid">
+            <mat-card class="android-app-card">
+                <mat-card-title-group class="custom-title-group">
+                    <mat-card-title class="mb-0">My Android App</mat-card-title>
+                    <mat-card-actions class="text-center">
+                        <button mat-button>Next</button>
+                    </mat-card-actions>
+                </mat-card-title-group>
+                <mat-card-content>
+                    <form [formGroup]="androidPageForm">
+                        <h6>This will be shown on the home screen of iOS device and in the App Store. we recommanded this is no longer than the 12 characters.</h6>
+                        <div class="grid sm:grid-cols-4 gap-6 w-full custom-margin">
+                            <div class="sm:col-span-1 custom-label">
+                                <mat-label>Name</mat-label>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <mat-form-field class="w-full">
+                                    <input matInput placeholder="Fresh" formControlName="name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <h6 class="mb-2">Your android app requires three custom artwork assets. you can download our<a href="javascript:void(0)" class="text-red decoration"> artwork guide and templates here.</a></h6>
+                        <h6>Icon must be 1024 X 1024px</h6>
+                        <div class="grid sm:grid-cols-4 gap-6 w-full custom-margin">
+                            <div class="sm:col-span-1 custom-label">
+                                <mat-label>Icon</mat-label>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <div class="fileupload-main">
+                                    <img src="assets/images/avatars/male-02.jpg" class="avatar-img img-fluid">
+                                    <label for="file-upload" class="custom-file-upload" (change)="onFileChange($event)">Choose File....</label>
+                                    <input type="file" id="file-upload" formControlName="uploadIcon">
+                                </div>
+                                <p class="text-red">A valid image of 1024 X 1024px is required</p>
+                            </div>
+                        </div>
+                        <div class="warningBox">
+                            <p>Please ansure you are happy with the look of your icon. Once your App has been built, changing it reuires <span class="font-weight-bold"> App redevelopment</span> which may be subject to an <span class="font-weight-bold"> admin fee.</span></p>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" class="responsive-image">
+            <img src="assets/images/mobiles/androidApp.jpg" class="img-fluid custom-size-androidImg">
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

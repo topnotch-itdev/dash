@@ -1,0 +1,66 @@
+<div class="w-full max-w-8xl handy-extras-main android-app-main">
+    <div class="iphone-app-title">
+        Alexa Skill
+    </div>
+    <mat-grid-list [cols]="isMobile ? 3 : 6" rowHeight="800px">
+        <mat-grid-tile [colspan]="4" class="custom-grid">
+            <mat-card class="android-app-card alex-card">
+                <mat-card-title-group class="custom-title-group">
+                    <mat-card-title class="mb-0">Basic Settings</mat-card-title>
+                    <mat-card-actions class="text-center">
+                        <button mat-button>Next</button>
+                    </mat-card-actions>
+                </mat-card-title-group>
+                <mat-card-content>
+                    <form [formGroup]="alexaSkillForm">
+                        <h6 class="mb-2">Need to login ? <a href="javascript:void(0)" class="text-red decoration"> click here</a> to see our guide.</h6>
+                        <h6>This will be shown on the alexa Skill store</h6>
+                        <div class="grid sm:grid-cols-4 gap-6 w-full custom-margin">
+                            <div class="sm:col-span-1 custom-label">
+                                <mat-label>Skill Name</mat-label>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <mat-form-field class="w-full">
+                                    <input matInput placeholder="Fresh" formControlName="skillName">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <h6>Please enter the corrected formatted name you wish Alexa use to trigger your skill.This must be lower case, any numbers must be spelled phonetically (e.g. 2 as two). Use periods to seperate letters you would like Alexa to pronounce
+                            individually, eg. radio f.m invocation names must contain at least two words, not containing the words 'for' and 'end'. </h6>
+                        <div class="grid sm:grid-cols-4 gap-6 w-full custom-margin">
+                            <div class="sm:col-span-1 custom-label">
+                                <mat-label>Invocation Name</mat-label>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <mat-form-field class="w-full">
+                                    <input matInput placeholder="Fresh" formControlName="invocationName">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <h6>Icon must be 1024px X 1024px and contain NO transparency, this will be the icon which will display in the skill store and as a backup if current track artwork cannot be found.</h6>
+                        <div class="grid sm:grid-cols-4 gap-6 w-full custom-margin">
+                            <div class="sm:col-span-1 custom-label">
+                                <mat-label>Alexa Store Logo</mat-label>
+                            </div>
+                            <div class="sm:col-span-1 text-center">
+                                <img src="assets/images/avatars/male-02.jpg" class="avatar1-img img-fluid">
+                            </div>
+                            <div class="sm:col-span-1">
+                                <div class="fileupload-main">
+                                    <label for="file-upload" class="custom-file-upload" (change)="onFileChange($event)">Choose File....</label>
+                                    <input type="file" id="file-upload" formControlName="uploadImage">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warningBox">
+                            <p>Please ansure you are happy with the look of your logo. Once your App has been built, changing it reuires <span class="font-weight-bold">skill redevelopment</span> which may be subject to an <span class="font-weight-bold"> admin fee.</span></p>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" class="responsive-image">
+            <img src="assets/images/mobiles/alexa.jpg" class="img-fluid alexa-img">
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

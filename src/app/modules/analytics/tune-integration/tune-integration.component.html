@@ -1,0 +1,87 @@
+<div class="w-full max-w-8xl">
+    <div class="sm:col-span-2">
+        <div class="product-items bg-card p-4">
+            <h1 class="font-bold font-large mb-2">TuneIn AIR Integration</h1>
+            <p class="font-medium playing-social mb-3">Get more attention on the TuneIn directory!</p>
+            <p class="font-service mb-3">
+                This free integration allows you to send your currently playing song information to the TuneIn directory. Be more noticed on TuneIn and tell your listeners what you're currently playing!
+            </p>
+            <p class="font-service">
+                If you're not already listed on TuneIn, this won't work - you will need to ensure you have a valid station listing first!
+            </p>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="configure-items bg-card p-4" *ngIf="alertStatus.warning">
+            <mat-icon class="warning-icon">warning</mat-icon>
+            <h5 class="font-bold mb-0" *ngIf="!warningMsg"> You need to configure the TuneIn integration before it can be enabled.</h5>
+            <h5 class="font-bold mb-0" *ngIf="warningMsg"> {{warningMsg}}</h5>
+        </div>
+        <div class="alert-show bg-card p-4" *ngIf="alertStatus.alert">
+            <mat-icon class="warning-icon">notification_important</mat-icon>
+            <h5 class="font-bold mb-0">{{ notifyMsg }}</h5>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="product-items bg-card p-4 setting-column">
+            <form [formGroup]="tuneInAIRIntegrationForm">
+                <div class="grid sm:grid-cols-2 gap-6 w-full">
+                    <div>
+                        <h5 class="font-bold font-large mb-2">Settings</h5>
+                    </div>
+                    <div class="switch-success text-right">
+                        <mat-slide-toggle color="primary" formControlName="isEnabled"></mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-3 md:grid-cols-3 gap-6 w-full py-5">
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Station ID</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="stationId" placeholder="Station ID" class="form-control text-left text-data" [ngClass]="{ 'is-invalid': submitted && f.stationId.errors }">
+                            <p class="tuneAirText mt-2">
+                                Your TuneIn station ID. You must be listed on TuneIn to have this.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Partner ID</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="partnerId" placeholder="Partner ID" class="form-control text-left text-data" [ngClass]="{ 'is-invalid': submitted && f.partnerId.errors }">
+                            <p class="tuneAirText mt-2">
+                                The partner ID given by TuneIn after requesting access to the API.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Partner Key</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="partnerKey" placeholder="Partner Key" class="form-control text-left text-data" [ngClass]="{ 'is-invalid': submitted && f.partnerKey.errors }">
+                            <p class="tuneAirText mt-2">
+                                The partner key given by TuneIn after requesting access to the API.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p class="help-block">Need help on setting this up?
+                    <a href="https://help.streamerr.co/article/how-do-i-enabled-nowplaying-tweets/" class="article-guide">Check
+                    out our help guide</a> for more information.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                    <div class="mt-4">
+                        <button type="button" class="btn-setting" (click)="savePlayingData()">
+                        <i class="material-icons save-icon custom-mat-icon">save</i>Save Settings
+                    </button>
+                    </div>
+                    <div class="mt-4">
+                        <button type="button" class="btn-remove-setting" (click)="removePlayingData()" [disabled]="tuneInAIRIntegrationForm.invalid">
+                            Remove Settings
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

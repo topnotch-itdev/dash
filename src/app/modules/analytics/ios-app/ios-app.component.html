@@ -1,0 +1,268 @@
+<div class="w-full max-w-8xl handy-extras-main iphone-app-main">
+    <div class="iphone-app-title">
+        iPhone App Development
+    </div>
+
+    <div class="sm:col-span-2 mt-4 mb-2">
+        <div class="configure-items bg-card p-4" *ngIf="alertStatus.warning">
+            <mat-icon class="warning-icon">warning</mat-icon>
+            <h5 class="font-bold mb-0" *ngIf="warningMsg"> {{warningMsg}}</h5>
+        </div>
+        <div class="alert-show bg-card p-4" *ngIf="alertStatus.alert">
+            <mat-icon class="warning-icon">notification_important</mat-icon>
+            <h5 class="font-bold mb-0">{{ notifyMsg }}</h5>
+        </div>
+    </div>
+
+    <mat-grid-list [cols]="isMobile ? 3 : 6" rowHeight="800px">
+        <mat-grid-tile [colspan]="isMobile ? 3 : 6" class="custom-grid">
+            <mat-card class="iphone-app-card" *ngIf="selectForm === 0">
+                <mat-card-actions>
+                    <button mat-button (click)="handleSelectForm('next')">Next</button>
+                </mat-card-actions>
+                <mat-card-content>
+                    <h5>Create a mobile app for your radio station.</h5>
+                    <h5>Your listeners are everywhere , reach them anywhere</h5>
+                    <p>Radio.co apps are connecting radio stations to thousand of mobile listeners worldwide.</p>
+                    <mat-grid-list [cols]="isMobile ? 1 : 2" rowHeight="290px">
+                        <mat-grid-tile class="custom-grid">
+                            <div class="build-customize-box">
+                                <h5>Build and Customize</h5>
+                                <mat-icon>edit</mat-icon>
+                                <p>Radio.co apps are connecting radio stations to thousand of mobile listeners
+                                    worldwide.</p>
+                            </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <div class="build-customize-box">
+                                <h5>Increase Discoverability</h5>
+                                <mat-icon>edit</mat-icon>
+                                <p>Get Your station in front of a potential audience of billions via the iTunes app
+                                    store.</p>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <h4 class="text-center font-weight-500">Click <a class="decoration font-weight-bold"
+                            href="javascript:void(0)">Next</a> to design your own branded iPhone app.</h4>
+                    <p>To Take advantage of Radio.co iOS App you will need to purchase or have access to an Apple
+                        Developer Account (Additional charge). You must also ensure your station is correctly licensed
+                        in your broadcast territory.Proof of licensing
+                        will be required to proceed.
+                    </p>
+                    <p>*Universal App will work natively on iPhone or iPad.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="iphone-app-card" *ngIf="selectForm === 1">
+                <mat-card-actions class="flex justify-start">
+                    <button mat-button (click)="handleSelectForm('previous')">Previous</button>
+                </mat-card-actions>
+                <mat-card-content>
+                    <form [formGroup]="iosForm">
+                        <div class="grid sm:grid-cols-2 gap-12 w-full py-5">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">App Name</h6>
+                                <div class="remove-setting-form">
+                                    <input type="text" formControlName="appName" placeholder="App Name"
+                                        class="form-control text-left text-data"
+                                        [ngClass]="{ 'is-invalid': submitted && f.appName.errors }">
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="font-bold font-large mb-2">App Description</h6>
+                                <div class="remove-setting-form">
+                                    <input type="text" formControlName="appDescription" placeholder="App Description"
+                                        class="form-control text-left text-data">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">App Logo</h6>
+                                <div class="remove-setting-form">
+                                    <i class="material-icons custom-mat-icon mr-2">upload</i><input type="file"
+                                        formControlName="logoFile" class="form-control text-left"
+                                        (change)="uploadFile($event, 'logo')">
+                                    <p class="tuneAirText mt-2">
+                                        The logo image that will be shown when the app is large enough. Required.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="font-bold font-large mb-2">App Icon</h6>
+                                <div class="remove-setting-form">
+                                    <i class="material-icons custom-mat-icon mr-2">upload</i><input type="file"
+                                        formControlName="appIcon" class="form-control text-left"
+                                        (change)="uploadFile($event, 'icon')">
+                                    <p class="tuneAirText mt-2">
+                                        This Icon will also change in Centova Cast within one hour. Required.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Background</h6>
+                                <div class="switch-success ml-0">
+                                    <mat-radio-group aria-label="Select an option" formControlName="background"
+                                        [(ngModel)]="backgroundType">
+                                        <mat-radio-button value="image" class="mat-radio-image">Image</mat-radio-button>
+                                        <mat-radio-button value="colour" class="mat-radio-colour">Colour
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div>
+                                <div *ngIf="backgroundType === 'image'">
+                                    <h6 class="font-bold font-large mb-2">Background Image</h6>
+                                    <div class="remove-setting-form">
+                                        <i class="material-icons custom-mat-icon mr-2">upload</i><input type="file"
+                                            formControlName="backgroundImage" class="form-control text-left"
+                                            (change)="uploadFile($event, 'background')">
+                                        <p class="tuneAirText mt-2">
+                                            Background Image should show in app background.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div *ngIf="backgroundType === 'colour'">
+                                    <h6 class="font-bold font-large mb-2">Background Colour</h6>
+                                    <div class="remove-setting-form backgroundPicker">
+                                        <mat-form-field>
+                                            <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr">
+                                            <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                                            <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="accentColour">
+                                            </ngx-mat-color-picker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Accent Colour</h6>
+                                <div class="remove-setting-form backgroundPicker">
+                                    <mat-form-field>
+                                        <input matInput [ngxMatColorPicker]="picker" [formControl]="accentColorCtr">
+                                        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                                        <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color">
+                                        </ngx-mat-color-picker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Radio Streaming Link</h6>
+                                <div class="remove-setting-form">
+                                    <input type="text" formControlName="radioLink" placeholder="https://example.com"
+                                        class="form-control text-left text-data">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Share Text</h6>
+                                <div class="remove-setting-form">
+                                    <input type="text" formControlName="shareText" placeholder="Hello there..."
+                                        class="form-control text-left text-data">
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Default album art</h6>
+                                <div class="remove-setting-form">
+                                    <i class="material-icons custom-mat-icon mr-2">upload</i><input type="file"
+                                        formControlName="albumArt" class="form-control text-left"
+                                        (change)="uploadFile($event, 'album')">
+                                    <p class="tuneAirText mt-2">
+                                        This image that will be shown when the system can't find any artwork. This will also change in Centova Cast within one hour. Optional.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-1 w-full mt-4">
+                            <div>
+                                <button type="button" class="btn btn-xs btn-default no-transition flex">
+                                    <h6 class="font-bold font-large mb-2">Buttons</h6>
+                                    <span class="badge btnsCount">{{index}}</span>
+                                    <i class="material-icons custom-mat-icon ml-3 font-weight-bold text-primary add-player-section"
+                                        (click)="addDynamicBox()">add</i>
+                                </button>
+                            </div>
+                            <div formArrayName="iosFormControl" class="dynamicSection mt-4"
+                                *ngFor="let item of iosForm.get('iosFormControl')['controls']; let i = index;">
+                                <div [formGroupName]="i">
+                                    <div class="w-full flex justify-between">
+                                        <div class="switch-success ml-0">
+                                            <mat-radio-group class="grid sm:grid-cols-3 w-full"
+                                                aria-label="Select an option" formControlName="groupBtns">
+                                                <mat-radio-button value="facebook" class="mat-radio-facebook">
+                                                    Facebook
+                                                </mat-radio-button>
+                                                <mat-radio-button value="twitter" class="mat-radio-twitter">Twitter
+                                                </mat-radio-button>
+                                                <mat-radio-button value="instagram" class="mat-radio-instagram">
+                                                    Instagram
+                                                </mat-radio-button>
+                                                <mat-radio-button value="whatsapp" class="mat-radio-whatsapp">
+                                                    WhatsApp
+                                                </mat-radio-button>
+                                                <mat-radio-button value="youtube" class="mat-radio-youtube">YouTube
+                                                </mat-radio-button>
+                                                <mat-radio-button value="tiksnap" class="mat-radio-tiksnap">TikTok &
+                                                    Snapchat
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <p class="mb-0 ml-2 mt-0 text-right align-self-center"
+                                            *ngIf="iosForm.get('iosFormControl')['controls'].length > 0">
+                                            <i class="material-icons custom-mat-icon text-primary cursor-pointer"
+                                                (click)="deleteDynamicBox(i)">delete</i>
+                                        </p>
+                                    </div>
+                                    <div class="remove-setting-form mt-4">
+                                        <input type="text" formControlName="groupBtnText"
+                                            placeholder="Full URL (i.e., http://example.com/)"
+                                            class="form-control text-left text-data">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Apple ID</h6>
+                                <div class="remove-setting-form">
+                                    <input type="text" formControlName="appleID" placeholder="Apple ID"
+                                        class="form-control text-left text-data">
+                                    <p class="tuneAirText mt-2">
+                                        Apple Developer login information to submit the app for you.
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="font-bold font-large mb-2">Password</h6>
+                                <div class="remove-setting-form">
+                                    <input type="password" formControlName="applePassword" placeholder="Apple Password"
+                                        class="form-control text-left text-data">
+                                    <p class="tuneAirText mt-2">
+                                        Apple Developer login password to submit the app for you.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-12 w-full mt-4 ">
+                            <div class="mt-4 ">
+                                <button type="button " class="btn-setting " (click)="saveIOSData() ">
+                                    <i class="material-icons save-icon custom-mat-icon ">save</i>Save Settings
+                                </button>
+                            </div>
+                            <div class="mt-4 ">
+                                <button type="button " class="btn-remove-setting " (click)="removeIOSData() "
+                                    [disabled]="iosForm.invalid ">
+                                    Remove Settings
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

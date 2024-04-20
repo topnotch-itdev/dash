@@ -1,0 +1,229 @@
+<div class="w-full max-w-8xl">
+
+    <!-- Form -->
+    <form [formGroup]="accountForm">
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- Name -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>First Name</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix></mat-icon>
+                    <input [formControlName]="'firstName'" matInput>
+                </mat-form-field>
+
+            </div>
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Last Name</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix></mat-icon>
+                    <input [formControlName]="'lastName'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Company Name -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Company Name</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
+                    <input [formControlName]="'companyName'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Email Address -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Email Address</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                    <input [formControlName]="'email'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Payment Methods -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Payment Method</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:globe-alt'" matPrefix></mat-icon>
+                    <mat-select [formControlName]="'payment'">
+                        <mat-option [value]="'default'">Use Default (Set Per Order)</mat-option>
+                        <mat-option [value]="'stripe'">Credit/Debit card (Stripe)</mat-option>
+                        <mat-option [value]="'paypal'">PayPal</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Default Billing Contact -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Default Billing Contact</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:globe-alt'" matPrefix></mat-icon>
+                    <mat-select [formControlName]="'billing'">
+                        <mat-option [value]="'default'">Use Default Contact (Details Above)</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Where did you hear about us? -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Where did you hear about us?</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:globe-alt'" matPrefix></mat-icon>
+                    <mat-select [formControlName]="'hearAboutUs'">
+                        <mat-option [value]="'google'">Google</mat-option>
+                        <mat-option [value]="'searchEngine'">Other Search Engine</mat-option>
+                        <mat-option [value]="'hostTalk'">Web Hosting Talk</mat-option>
+                        <mat-option [value]="'Friend'">Friend</mat-option>
+                        <mat-option [value]="'Facebook'">Facebook</mat-option>
+                        <mat-option [value]="'Advertisement'">Advertisement</mat-option>
+                        <mat-option [value]="'Forum'">Forum</mat-option>
+                        <mat-option [value]="'Hosting Lists'">Hosting Lists</mat-option>
+                        <mat-option [value]="'Facebook'">Facebook</mat-option>
+                        <mat-option [value]="'Twitter'">Twitter</mat-option>
+                        <mat-option [value]="'Broadcasting World'">Broadcasting World</mat-option>
+                        <mat-option [value]="'Other'">Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- VAT number -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>VAT number (if applicable)</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                    <input [formControlName]="'vatNumber'" matInput>
+                </mat-form-field>
+                <p class="vat-font"> If you are a VAT registered company in the EU, please enter that number here. Once
+                    you have
+                    signed up, please inform us of your tax exemption via support ticket so we can verify this
+                    number.</p>
+            </div>
+            <!-- Address 1-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Address 1</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                    <input [formControlName]="'address1'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Address 2-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Address 2</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:mail'" matPrefix></mat-icon>
+                    <input [formControlName]="'address2'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- City-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>City</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix></mat-icon>
+                    <input [formControlName]="'city'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- State/Region-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>State/Region</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix></mat-icon>
+                    <input [formControlName]="'state'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Country-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Country</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix></mat-icon>
+                    <mat-select [formControlName]="'country'">
+                        <mat-option [value]="'UK'">United Kingdom</mat-option>
+                        <mat-option [value]="'US'">United States</mat-option>
+                        <mat-option [value]="'UY'">Uruguay</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Zip Code-->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Zip Code</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:location-marker'" matPrefix></mat-icon>
+                    <input [formControlName]="'zipCode'" matInput>
+                </mat-form-field>
+            </div>
+
+            <!-- Phone -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Phone Number</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matPrefix></mat-icon>
+                    <input [formControlName]="'phone'" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Email Preferences</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'generalEmail'">
+                    General Emails - All account related emails
+                </mat-checkbox>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'invoiceEmail'">
+                    Invoice Emails - New Invoices, Reminders, & Overdue Notices
+                </mat-checkbox>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'supportEmail'">
+                    Support Emails - Receive a CC of all Support Ticket Communications
+                </mat-checkbox>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'productEmail'">
+                    Product Emails - Welcome Emails, Suspensions & Other Lifecycle Notifications
+                </mat-checkbox>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'domainEmail'">
+                    Domain Emails - Registration/Transfer Confirmation & Renewal Notices
+                </mat-checkbox>
+            </div>
+            <div class="sm:col-span-4">
+                <mat-checkbox [formControlName]="'affiliateEmail'">
+                    Affiliate Emails - Receive Affiliate Notifications
+                </mat-checkbox>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Join our mailing list</div>
+            <P class="mail-list">We would like to send you occasional news, information and special offers by email. To join our mailing
+                list, simply tick the box below. You can unsubscribe at any time.
+            <mat-slide-toggle [formControlName]="'mailingList'"></mat-slide-toggle>
+            </P>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-center">
+            <button mat-stroked-button type="button" (click)="cancelBtn()">
+                Cancel
+            </button>
+            <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Save
+            </button>
+        </div>
+    </form>
+
+    <!-- Divider -->
+    <div class="mt-11 mb-10 border-t"></div>
+
+    <div class="w-full flex items-center justify-center">
+        <P class="mail-list">Powered by <a href="https://www.whmcs.com/" target="_blank" class="complete-solution">WHMCompleteSolution.</a>
+        </P>
+    </div>
+
+</div>

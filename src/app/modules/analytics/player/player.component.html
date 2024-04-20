@@ -1,0 +1,250 @@
+<div class="w-full max-w-8xl">
+    <div class="sm:col-span-2">
+        <div class="product-items bg-card p-4">
+            <h1 class="font-bold font-large mb-2">Player</h1>
+            <p class="font-medium playing-social mb-3">Player is a responsive, exclusive player for Streamerr customers.
+                Listen to your station in style.</p>
+            <p class="font-service mb-3">
+                Player allows you to create a responsive and feature-rich player for your listeners. It works with most
+                modern browsers. It’s especially handy for those of you with mobile apps, as you’ll notice the similar
+                look across the board, adding the familiarity
+                your listeners will know and love.
+            </p>
+            <p class="font-service">
+                Configuring Player and saving the settings will automatically enable it. To disable it, simply remove
+                the settings and leave it unconfigured. The choice is yours!
+            </p>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="configure-items bg-card p-4" *ngIf="alertStatus.warning">
+            <mat-icon class="warning-icon">warning</mat-icon>
+            <h5 class="font-bold mb-0" *ngIf="warningMsg"> {{warningMsg}}</h5>
+        </div>
+        <div class="alert-show bg-card p-4" *ngIf="alertStatus.alert">
+            <mat-icon class="warning-icon">notification_important</mat-icon>
+            <h5 class="font-bold mb-0">{{ notifyMsg }}</h5>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="product-items bg-card p-4 setting-column">
+            <div class="grid sm:grid-cols-2 gap-6 w-full">
+                <div>
+                    <h5 class="font-bold font-large mb-2">Settings</h5>
+                </div>
+            </div>
+            <form [formGroup]="playerMusicForm">
+                <div class="grid sm:grid-cols-1 gap-6 w-full py-5">
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Station Name</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="stationName" placeholder="Station Name"
+                                class="form-control text-left text-data"
+                                [ngClass]="{ 'is-invalid': submitted && f.stationName.errors }">
+                            <p class="mt-2">
+                                Your station name. It will be shown in the window/tab title when you use Player as a
+                                popup player.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Logo <i class="material-icons custom-mat-icon mr-2">upload</i></h6>
+                        <div class="remove-setting-form">
+                            
+                            <!-- Logo -->
+                            <div class="flex flex-auto">
+                                <div
+                                    class="relative flex items-center justify-center w-full h-32 rounded-t overflow-hidden ring-4 ring-bg-card">
+                                    <!-- Upload / Remove avatar -->
+                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center z-20">
+                                        <div>
+                                            <input id="logo-file-input" formControlName="logoFile"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'"
+                                                (change)="uploadFile(logoFileInput.files, 'logo')" #logoFileInput>
+                                            <label
+                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
+                                                for="logo-file-input" matRipple>
+                                                <mat-icon class="text-white"
+                                                    [svgIcon]="'heroicons_outline:camera'"></mat-icon>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="thumbnails.logo">
+                                            <button mat-icon-button (click)="removeImage('logo')">
+                                                <mat-icon class="text-white"
+                                                    [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Image/Letter -->
+                                    <img class="object-cover w-full h-full" *ngIf="thumbnails.logo"
+                                        [src]="thumbnails.logo">
+                                    <div class="flex items-center justify-center w-full h-full rounded overflow-hidden uppercase text-8xl font-bold leading-none bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                                        *ngIf="!thumbnails.logo">
+                                        U
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="tuneAirText mt-2">
+                                The logo image that will be shown when the player is large enough. Optional.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Default artwork <i class="material-icons custom-mat-icon mr-2">upload</i></h6>
+                        <div class="remove-setting-form">
+                            <div class="flex flex-auto">
+                                <div
+                                    class="relative flex items-center justify-center w-full h-32 rounded-t overflow-hidden ring-4 ring-bg-card">
+                                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                                    <div class="absolute inset-0 flex items-center justify-center z-20">
+                                        <div>
+                                            <input id="artworkFile-file-input" formControlName="artworkFile"
+                                                class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                                type="file" [multiple]="false" [accept]="'image/jpeg, image/png'"
+                                                (change)="uploadFile(nocoverFileInput.files, 'nocover')" #nocoverFileInput>
+                                            <label
+                                                class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
+                                                for="artworkFile-file-input" matRipple>
+                                                <mat-icon class="text-white"
+                                                    [svgIcon]="'heroicons_outline:camera'"></mat-icon>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="thumbnails.nocover">
+                                            <button mat-icon-button (click)="removeImage('nocover')">
+                                                <mat-icon class="text-white"
+                                                    [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Image/Letter -->
+                                    <img class="object-cover w-full h-full" *ngIf="thumbnails.nocover"
+                                        [src]="thumbnails.nocover">
+                                    <div class="flex items-center justify-center w-full h-full rounded overflow-hidden uppercase text-8xl font-bold leading-none bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+                                        *ngIf="!thumbnails.nocover">
+                                        U
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="tuneAirText mt-2">
+                                This image that will be shown when the system can't find any artwork. This will
+                                also change in Centova Cast within one hour. Optional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-12 w-full mt-4">
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Background Colour</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="backgroundColor" class="form-control text-data">
+                            <p class="tuneAirText mt-2">
+                                A colour in long hexadecimal form. Will be used for the player's background colour.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-bold font-large mb-2">Tint</h6>
+                        <div class="remove-setting-form">
+                            <input type="text" formControlName="tint" class="form-control text-left text-data">
+                            <p class="tuneAirText mt-2">
+                                A colour in long hexadecimal form. Will be used for the player's text and button colour.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-1 w-full mt-4">
+                    <div>
+                        <button type="button" class="btn btn-xs btn-default no-transition">Buttons <span
+                                class="badge btnsCount">{{index}}</span><i class="material-icons custom-mat-icon ml-3 font-weight-bold 
+                            text-primary add-player-section" (click)="addDynamicBox()">add</i></button>
+                    </div>
+                    <ng-template [ngIf]="index > 0">
+                        <div formArrayName="playingFormControl" class="dynamicSection mt-4"
+                            *ngFor="let item of playerMusicForm.get('playingFormControl')['controls']; let i = index;">
+                            <div [formGroupName]="i">
+                                <div class="grid sm:grid-cols-2 gap-12 w-full">
+                                    <div class="switch-success">
+                                        <mat-radio-group aria-label="Select an option" formControlName="groupBtns">
+                                            <mat-radio-button value="website" class="mat-radio-website"><i
+                                                    class="material-icons mr-2 custom-mat-icon">language</i>website</mat-radio-button>
+                                            <mat-radio-button value="facebook"
+                                                class="mat-radio-facebook">facebook</mat-radio-button>
+                                            <mat-radio-button value="twitter"
+                                                class="mat-radio-twitter">twitter</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                    <p class="mb-0 text-right align-self-center"
+                                        *ngIf="playerMusicForm.get('playingFormControl')['controls'].length > 0">
+                                        <i class="material-icons custom-mat-icon text-primary cursor-pointer"
+                                            (click)="deleteDynamicBox(i)">delete</i>
+                                    </p>
+                                </div>
+                                <div class="remove-setting-form mt-4">
+                                    <input type="text" formControlName="groupBtnText"
+                                        placeholder="Full URL (i.e., http://example.com/)"
+                                        class="form-control text-left text-data">
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-12 w-full mt-4 ">
+                    <div class="mt-4 ">
+                        <button type="button " class="btn-setting " (click)="savePlayingData() ">
+                            <i class="material-icons save-icon custom-mat-icon ">save</i>Save Settings
+                        </button>
+                    </div>
+                    <div class="mt-4 ">
+                        <button type="button " class="btn-remove-setting " (click)="removePlayingData() "
+                            [disabled]="playerMusicForm.invalid ">
+                            Remove Settings
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="sm:col-span-2 mt-4">
+        <div class="product-items bg-card p-4 setting-column">
+            <div class="grid sm:grid-cols-2 gap-6 w-full">
+                <div>
+                    <h5 class="font-bold font-large mb-2">Preview</h5>
+                </div>
+            </div>
+            <div class="transition-all-100ms-linear" [ngStyle]="{ width: previewWidth+'px', height: previewHeight+'px' }"
+            resizable r-directions="['bottom', 'right']" r-width="previewWidth" r-height="previewHeight">
+                <iframe *ngIf="!!previewUrl" style="height: 100%; width: 100%;" class="img-thumbnail" [src]="previewUrl"></iframe>
+            </div>
+            <hr>
+            <p>Player looks great on any screen size and automatically adjusts itself depending on the size of the window
+                it’s opened in. However, we do have some recommended sizes for Player.</p>
+            <div>
+                <button type="button" class="btn btn-preview" (click)="setPreviewSize(300, 60)">300x60
+                    (mini)</button>&nbsp;
+                <button type="button" class="btn btn-preview" (click)="setPreviewSize(300, 150)">300x150
+                    (small)</button>&nbsp;
+                <button type="button" class="btn btn-preview" (click)="setPreviewSize(300, 450)">300x450
+                    (large)</button>&nbsp;
+                <button type="button" class="btn btn-preview" (click)="setPreviewSize(540, 540)">540x540
+                    (full/popup)</button>
+            </div>
+            <p>The current size is <b>{{previewWidth}}×{{previewHeight}}</b>.</p>
+            <hr>
+            <h4 class="card-header">Embedding</h4>
+            <p>Player is designed to be embedded on your website. Below is the HTML tag you need to add to your site for
+                embedding Player.</p>
+            <pre><code>&lt;iframe style="width: {{previewWidth}}px; height: {{previewHeight}}px; border: 0;" src="{{playerUrl}}"&gt;&lt;/iframe&gt;</code></pre>
+            <div *ngIf="previewWidth >= 540 && previewHeight >= 540">
+                <p>At this size, you can also use Player as a pop-up player. The link you'll need is:</p>
+                <pre><code>{{playerUrl}}</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
